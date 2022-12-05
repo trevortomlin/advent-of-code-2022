@@ -2,6 +2,25 @@ use std::collections::{HashSet};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+/*
+Part 1 From Youtube Comment:
+
+    v.lines()
+        .tuples()
+        .into_iter()
+        .map(|(l1, l2, l3)| l1.chars().find(|c| l2.contains(*c) && l3.contains(*c)))
+        .map(Option::unwrap)
+        .map(|c| {
+            if c.is_lowercase() {
+                c as i64 - 96
+            } else {
+                c as i64 - 38
+            }
+        })
+        .sum() 
+        
+*/
+
 pub fn run() -> (u32, u32) {
 
     let file_path = "src/day3/input.txt";

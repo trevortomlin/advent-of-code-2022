@@ -1,6 +1,7 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() {
     let d1 = day1::day1::run();
@@ -11,4 +12,7 @@ fn main() {
 
     let d3 = day3::day3::run();
     println!("Day3 : {}, {}", d3.0, d3.1);
+
+    let d4 = day4::day4::run();
+    println!("Day4 : {}, {}", d4.0, d4.1);
 }
