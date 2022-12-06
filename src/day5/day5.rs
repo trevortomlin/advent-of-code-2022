@@ -39,7 +39,7 @@ fn part1(input: &str) -> String {
                 let stackIndex = (i  / 4);
 
                 if char != ' ' && char != '[' && char != ']'{
-                    println!("i: {i}, Stack: {stackIndex}, Char: {char}");
+                    //println!("i: {i}, Stack: {stackIndex}, Char: {char}");
 
                     stacks[stackIndex].push_back(char);
 
@@ -107,7 +107,7 @@ fn part2(input: &str) -> String {
                 let stackIndex = (i  / 4);
 
                 if char != ' ' && char != '[' && char != ']'{
-                    println!("i: {i}, Stack: {stackIndex}, Char: {char}");
+                    //println!("i: {i}, Stack: {stackIndex}, Char: {char}");
 
                     stacks[stackIndex].push_back(char);
 

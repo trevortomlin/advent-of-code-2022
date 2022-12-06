@@ -3,20 +3,42 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
+
+enum RunPointer {
+
+    Num(fn() -> (u32, u32)),
+    Str(fn() -> (String, String)),
+
+}
+
+static runs: [RunPointer; 6] =      [
+                                    RunPointer::Num(day1::day1::run),
+                                    RunPointer::Num(day2::day2::run),
+                                    RunPointer::Num(day3::day3::run),
+                                    RunPointer::Num(day4::day4::run),
+                                    RunPointer::Str(day5::day5::run),
+                                    RunPointer::Num(day6::day6::run),
+                                   ];
 
 fn main() {
-    let d1 = day1::day1::run();
-    println!("Day1 : {}, {}", d1.0, d1.1);
-    
-    let d2 = day2::day2::run();
-    println!("Day2 : {}, {}", d2.0, d2.1);
 
-    let d3 = day3::day3::run();
-    println!("Day3 : {}, {}", d3.0, d3.1);
+    for (i, run) in runs.iter().enumerate() {
 
-    let d4 = day4::day4::run();
-    println!("Day4 : {}, {}", d4.0, d4.1);
+        match run {
 
-    let d5 = day5::day5::run();
-    println!("Day5 : {}, {}", d5.0, d5.1);
+            RunPointer::Num(x) => {
+                let d = x(); 
+                println!("Day{} : {}, {}", i+1, d.0, d.1);
+                },
+
+            RunPointer::Str(x) => {
+                let d = x(); 
+                println!("Day{} : {}, {}", i+1, d.0, d.1);
+            },
+
+        }
+
+    }
+
 }
