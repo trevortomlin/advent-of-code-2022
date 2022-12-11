@@ -174,15 +174,9 @@ fn part2(input: &str) -> u32 {
         let dir = step.0;
         let amt = step.1;
 
-        println!("{},{}", segments[0].x, segments[0].y);
-        println!("{},{}", segments[9].x, segments[9].y);
-
         for _ in 0..amt {
 
             for i in 0..segments.len()-1 {
-
-                //let mut head = segments[i];
-                //let mut tail = segments[i+1];
 
                 if segments[i].s_type == SegmentType::Head {
 
