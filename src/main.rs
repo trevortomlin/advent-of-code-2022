@@ -8,6 +8,8 @@ mod day7;
 mod day8;
 mod day9;
 mod day10;
+mod day11;
+mod day12;
 
 enum RunPointer {
 
@@ -17,7 +19,7 @@ enum RunPointer {
 
 }
 
-static RUNS: [RunPointer; 10] =      [
+static RUNS: [RunPointer; 12] =      [
                                     RunPointer::Num(day1::day1::run),
                                     RunPointer::Num(day2::day2::run),
                                     RunPointer::Num(day3::day3::run),
@@ -28,6 +30,8 @@ static RUNS: [RunPointer; 10] =      [
                                     RunPointer::Num(day8::day8::run),
                                     RunPointer::Num(day9::day9::run),
                                     RunPointer::Str(day10::day10::run),
+                                    RunPointer::Ext("Python: 78678, 15333249714"),
+                                    RunPointer::Num(day12::day12::run),
                                    ];
 
 fn main() {
