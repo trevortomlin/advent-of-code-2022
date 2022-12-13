@@ -31,7 +31,7 @@ static RUNS: [RunPointer; 12] =      [
                                     RunPointer::Num(day9::day9::run),
                                     RunPointer::Str(day10::day10::run),
                                     RunPointer::Ext("Python: 78678, 15333249714"),
-                                    RunPointer::Num(day12::day12::run),
+                                    RunPointer::Ext("Python: 352, 345"),
                                    ];
 
 fn main() {
