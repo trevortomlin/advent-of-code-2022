@@ -9,13 +9,13 @@ struct Data {
 }
 
 const ROW: i32 = 2000000;
-const C_MAX: i32 = 0;
-const C_MIN: i32 = 20;
+const C_MAX: i32 = 4000000;
+const C_MIN: i32 = 0;
 //const ROW: i32 = 10;
 
-pub fn run() -> (u32, u32) {
+pub fn run() -> (u128, u128) {
 
-    let input = fs::read_to_string("src/day15/test.txt")
+    let input = fs::read_to_string("src/day15/input.txt")
     .expect("Should have been able to read the file");
 
     let p1 = part1(&input);
@@ -40,7 +40,7 @@ fn manhatten_distance(p1: (i32, i32), p2: (i32, i32)) -> i32 {
     return x + y;
 }
 
-fn part1(input: &str) -> u32 {
+fn part1(input: &str) -> u128 {
 
     let mut coords: Vec<Data> = Vec::new();
 
@@ -153,11 +153,11 @@ fn part1(input: &str) -> u32 {
 
     }
 
-    set.len() as u32
+    set.len() as u128
 
 }
 
-fn part2(input: &str) -> u32 {
+fn part2(input: &str) -> u128 {
 
     let mut coords: Vec<Data> = Vec::new();
 
@@ -248,28 +248,49 @@ fn part2(input: &str) -> u32 {
 
     }
 
-    let mut set: HashSet<i32> = HashSet::new();
+    let mut pos = Vec::new();
+    let mut neg = Vec::new();
 
-    for coord in coords {
+    for coord in &coords {
 
         let d = manhatten_distance(coord.sensor, coord.beacon);
 
-        let mut dy = coord.sensor.1 - ROW;
+        neg.push(coord.sensor.0 + coord.sensor.1 - d);
+        neg.push(coord.sensor.0 + coord.sensor.1 + d);
 
-        if dy < 0 {
-            dy *= -1;
-        }
-
-        let dx = d - dy;
-
-        for x in coord.sensor.0 - dx..coord.sensor.0 + dx {
-            set.insert(x);
-        }
-
-       
+        pos.push(coord.sensor.0 - coord.sensor.1 - d);
+        pos.push(coord.sensor.0 - coord.sensor.1 + d);
 
     }
 
-    0
+    let mut pos_line = 0;
+    let mut neg_line = 0;
+
+    for i in 0..2*&coords.len() {
+
+        for j in i+1..2*&coords.len() {
+
+            let a = pos[i];
+            let b = pos[j];
+
+            if a - b == 2 || a - b == -2 {
+                pos_line = cmp::min(a, b) + 1;
+            }
+
+            let a = neg[i];
+            let b = neg[j];
+
+            if a - b == 2 || a - b == -2 {
+                neg_line = cmp::min(a, b) + 1;
+            }
+
+        }
+
+    }
+
+    let x = (pos_line + neg_line) / 2;
+    let y = (neg_line - pos_line) / 2;
+
+    return x as u128 * 4_000_000 as u128 + y as u128;
 
 }

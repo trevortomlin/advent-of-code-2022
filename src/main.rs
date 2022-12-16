@@ -17,6 +17,7 @@ mod day15;
 enum RunPointer {
 
     Num(fn() -> (u32, u32)),
+    BigNum(fn() -> (u128, u128)),
     Str(fn() -> (String, String)),
     Ext(&'static str)
 
@@ -37,7 +38,7 @@ static RUNS: [RunPointer; 15] =      [
                                     RunPointer::Ext("Python: 352, 345"),
                                     RunPointer::Ext("Python: 6237, 27930"),
                                     RunPointer::Num(day14::day14::run),
-                                    RunPointer::Num(day15::day15::run),
+                                    RunPointer::BigNum(day15::day15::run),
                                    ];
 
 fn main() {
@@ -49,8 +50,11 @@ fn main() {
             RunPointer::Num(x) => {
                 let d = x(); 
                 println!("Day{} : {}, {}", i+1, d.0, d.1);
-                },
-
+            },
+            RunPointer::BigNum(x) => {
+                let d = x(); 
+                println!("Day{} : {}, {}", i+1, d.0, d.1);
+            },
             RunPointer::Str(x) => {
                 let d = x(); 
                 println!("Day{} : {}, {}", i+1, d.0, d.1);
